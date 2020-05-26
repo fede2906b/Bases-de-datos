@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!ELEMENT opiniones (opinion*)>
+
+<!ELEMENT opinion (numero,fecha,opinionPersona,justificacion,bien,persona)>
+
+<!ELEMENT numero (#PCDATA)>
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT opinionPersona (#PCDATA)>
+<!ELEMENT justificacion (#PCDATA)>
+<!ELEMENT bien (#PCDATA)>
+<!ELEMENT persona (#PCDATA)>

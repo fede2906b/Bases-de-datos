@@ -1,0 +1,114 @@
+
+/*CONSTRUCCION DE LAS TABLAS*/
+
+CREATE TABLE  Personas(
+    tipoDocumento VARCHAR(10) NOT NULL,
+    numeroDocumento VARCHAR(10) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+);
+CREATE TABLE Emails(
+    tipoDocumento VARCHAR(10) NOT NULL,
+    numeroDocumento VARCHAR(10) NOT NULL,
+	email VARCHAR(50) NOT NULL
+);
+CREATE TABLE Consultores(
+    tipoDocumento VARCHAR(10) NOT NULL,
+    numeroDocumento VARCHAR(10) NOT NULL,
+);
+CREATE TABLE Profesores(
+    tipoDocumento VARCHAR(10) NOT NULL,
+    numeroDocumento VARCHAR(10) NOT NULL,
+    especialidad VARCHAR(3) NOT NULL,
+    tarjetaProfesional VARCHAR(15) NOT NULL
+);
+CREATE TABLE Estudiantes(
+    tipoDocumento VARCHAR(10) NOT NULL,
+    numeroDocumento VARCHAR(10) NOT NULL,
+    nivelEducativo VARCHAR(40) NOT NULL
+);
+CREATE TABLE Tematicas(
+    nombre VARCHAR(50) NOT NULL
+    descripcion VARCHAR(500) NOT NULL,
+    t_doc_Consultor VARCHAR(10) NOT NULL,
+    n_doc_Consultor VARCHAR(10) NOT NULL,
+);
+CREATE TABLE Preguntas(
+    codigo VARCHAR(10) NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    formulacion VARCHAR(500) NOT NULL,
+    fechaCreacion DATE NOT NULL,
+    t_doc_Estudiante VARCHAR(10) NOT NULL,
+    n_doc_Estudiante VARCHAR(10) NOT NULL,
+    tematica VARCHAR(50)
+);
+CREATE TABLE Respuestas(
+    codigo VARCHAR(10) NOT NULL,
+    fechaCreacion DATE NOT NULL,
+    t_doc_Profesor VARCHAR(10) NOT NULL,
+    n_doc_Profesor VARCHAR(10) NOT NULL,
+	pregunta VARCHAR(10) NOT NULL,
+	respuesta VARCHAR(1000) NOT NULL,
+	replica VARCHAR(10)
+);
+CREATE TABLE FuentesRespuesta(
+    codigoRespuesta VARCHAR(10) NOT NULL,
+    codigoFuente VARCHAR(10) NOT NULL,
+);
+CREATE TABLE FuentesInformativas(
+    codigo VARCHAR(10) NOT NULL,
+    referencia VARCHAR(50) NOT NULL,
+);
+CREATE TABLE Estudios(
+    codigo VARCHAR(10) NOT NULL,
+    nivel VARCHAR(20) NOT NULL,
+    titulo VARCHAR(50) NOT NULL,
+    fechaFinalizacion DATE NOT NULL,
+    t_doc_Profesor VARCHAR(10) NOT NULL,
+    n_doc_Profesor VARCHAR(10) NOT NULL,
+);
+CREATE TABLE Experiencias(
+    codigo VARCHAR(10) NOT NULL,
+    fechaInicial DATE NOT NULL,
+	fechaFinal DATE NOT NULL,
+	cargo VARCHAR(50) NOT NULL,
+    t_doc_Profesor VARCHAR(10) NOT NULL,
+    n_doc_Profesor VARCHAR(10) NOT NULL,
+);
+CREATE TABLE Proyectos(
+    codigo VARCHAR(10) NOT NULL,
+	tema VARCHAR(50) NOT NULL,
+	rol VARCHAR(50) NOT NULL,
+	duracion INT NOT NULL,
+    t_doc_Profesor VARCHAR(10) NOT NULL,
+    n_doc_Profesor VARCHAR(10) NOT NULL,
+);
+
+CREATE TABLE Certificados(
+    codigo VARCHAR(10) NOT NULL,
+    fecha DATE NOT NULL,	
+	URL VARCHAR(50) NOT NULL
+);
+
+/*CHECKS*/
+
+ALTER TABLE Fotos MODIFY (foto CHECK(foto LIKE '%.%'));
+
+/*PRIMARIAS*/
+
+ALTER TABLE Personas ADD CONSTRAINT PK_Personas PRIMARY KEY (tipoDocumento,numeroDocumento);
+ALTER TABLE Emails ADD CONSTRAINT PK_Emails PRIMARY KEY (tipoDocumento,numeroDocumento,email);
+ALTER TABLE Consultores ADD CONSTRAINT PK_Consultores PRIMARY KEY (tipoDocumento,numeroDocumento);
+ALTER TABLE Estudiantes ADD CONSTRAINT PK_Estudiantes PRIMARY KEY (tipoDocumento,numeroDocumento);
+ALTER TABLE Profesores ADD CONSTRAINT PK_Profesores PRIMARY KEY (tipoDocumento,numeroDocumento);
+ALTER TABLE Tematicas ADD CONSTRAINT PK_Tematicas PRIMARY KEY (nombre);
+ALTER TABLE Respuestas ADD CONSTRAINT PK_Respuestas PRIMARY KEY (codigo);
+ALTER TABLE Preguntas ADD CONSTRAINT PK_Preguntas PRIMARY KEY (codigo);
+ALTER TABLE FuentesRespuesta ADD CONSTRAINT PK_FuentesRespuesta PRIMARY KEY (codigoRespuesta,codigoFuente);
+ALTER TABLE FuentesInformativas ADD CONSTRAINT PK_FuentesInformativas PRIMARY KEY (codigo);
+ALTER TABLE Estudios ADD CONSTRAINT PK_Estudios PRIMARY KEY (codigo);
+ALTER TABLE Experiencias ADD CONSTRAINT PK_Experiencias PRIMARY KEY (codigo);
+ALTER TABLE Proyectos ADD CONSTRAINT PK_Proyectos PRIMARY KEY (codigo);
+ALTER TABLE Certificados ADD CONSTRAINT PK_Certificados PRIMARY KEY (codigo);
+
+
